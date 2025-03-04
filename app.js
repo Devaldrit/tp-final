@@ -31,8 +31,6 @@ const startServer = async () => {
   }
 };
 
-await sequelize.sync({ force: true });
-
 startServer();
 
 app.get("/", (req, res) => {

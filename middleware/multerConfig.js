@@ -2,11 +2,10 @@ import multer from "multer";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, "uploads/"); // Assurez-vous que le dossier "uploads/" existe
   },
   filename: (req, file, cb) => {
-    const ext = file.originalname.split(".").pop();
-    cb(null, `${Date.now()}-${file.fieldname}.${ext}`);
+    cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
 
@@ -17,9 +16,10 @@ const upload = multer({
     const filetypes = /jpeg|jpg|png/;
     const mimetype = filetypes.test(file.mimetype);
     if (mimetype) {
-      return cb(null, true);
+      cb(null, true); // Accepter le fichier
+    } else {
+      cb(new Error("Seuls les fichiers JPEG et PNG sont autorisés"), false); // Rejeter le fichier
     }
-    cb(new Error("Format d'image non supporté (jpeg, jpg, png uniquement)"));
   },
 });
 

@@ -3,7 +3,7 @@ import sequelize from "../config/database.js";
 import bcrypt from "bcrypt";
 
 const User = sequelize.define(
-  "User",
+  "user",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -21,6 +21,7 @@ const User = sequelize.define(
     },
   },
   {
+    tableName: "users",
     hooks: {
       beforeCreate: async (user) => {
         const salt = await bcrypt.genSalt(10);
