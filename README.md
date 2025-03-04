@@ -11,5 +11,5 @@
 1. Clonez le dépôt :
    ```bash
    git clone <votre-lien-github>
-   cd mon-projet-api
+   cd tp-final
    ```
